@@ -5,6 +5,7 @@ import { logger } from './utils.js';
 const {
   location,
   pages: { homeHtml, controllerHtml },
+  constants: { CONTENT_TYPE },
 } = config;
 
 const controller = new Controller();
@@ -33,8 +34,16 @@ async function routes(request, response) {
   }
 
   if (method === 'GET') {
-    const { stream } = await controller.getFileStream(url);
+    const { stream, type } = await controller.getFileStream(url);
+    const contentType = CONTENT_TYPE[type];
 
+    if (!contentType) {
+      return stream.pipe(response);
+    }
+
+    response.writeHead(200, {
+      'Content-Type': CONTENT_TYPE[type],
+    });
     return stream.pipe(response);
   }
 
