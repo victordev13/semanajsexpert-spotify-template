@@ -65,4 +65,4 @@ Marque esse projeto com uma estrela 🌟
     - Verifique a versão do seu Node.js. Estamos usando na versão 17. Entre no [site do node.js](https://nodejs.org) e baixe a versão mais recente.
 
 ## Annotations
-Stoped in 38:36
+Stopped in 1:30:00
