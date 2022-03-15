@@ -37,17 +37,17 @@ async function routes(request, response) {
     const { stream, type } = await controller.getFileStream(url);
     const contentType = CONTENT_TYPE[type];
 
-    if (!contentType) {
-      return stream.pipe(response);
+    if (contentType) {
+      response.writeHead(200, {
+        'Content-Type': contentType,
+      });
     }
 
-    response.writeHead(200, {
-      'Content-Type': CONTENT_TYPE[type],
-    });
     return stream.pipe(response);
   }
 
-  response.writeHead(404).end();
+  response.writeHead(404);
+  return response.end();
 }
 
 function handlerError(error, response) {

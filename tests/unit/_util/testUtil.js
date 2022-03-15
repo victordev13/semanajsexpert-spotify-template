@@ -15,25 +15,25 @@ export default class TestUtil {
   }
 
   static generateWritableStream(onData) {
-    return new Readable({
-      write(chunk, encode, callback) {
+    return new Writable({
+      write(chunk, enc, cb) {
         onData(chunk);
-        callback(null, chunk);
+
+        cb(null, chunk);
       },
     });
   }
 
   static defaultHandleParams() {
     const requestStream = TestUtil.generateReadableStream(['request body']);
-    const responseStream = TestUtil.generateWritableStream(() => {});
-
+    const response = TestUtil.generateWritableStream(() => {});
     const data = {
       request: Object.assign(requestStream, {
         headers: {},
         method: '',
         url: '',
       }),
-      response: Object.assign(responseStream, {
+      response: Object.assign(response, {
         writeHead: jest.fn(),
         end: jest.fn(),
       }),
