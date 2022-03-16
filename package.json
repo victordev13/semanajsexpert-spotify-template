@@ -9,7 +9,8 @@
     "live-reload": "nodemon server/index.js",
     "test": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings",
     "test:watch": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings --watchAll",
-    "test:coverage": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings --coverage tests/unit"
+    "test:coverage": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings --coverage tests/unit",
+    "live-reload:docker": "docker-compose up live-reload"
   },
   "engines": {
     "node": "17"
