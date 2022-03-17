@@ -10,7 +10,7 @@
     "test": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings",
     "test:watch": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings --watchAll",
     "test:coverage": "cross-env LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --no-warnings --coverage tests/unit",
-    "live-reload:docker": "docker-compose up live-reload"
+    "live-reload:docker": "docker-compose up --build live-reload"
   },
   "engines": {
     "node": "17"
@@ -21,10 +21,12 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "jest": "^27.5.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "throttle": "^1.0.3"
   },
   "dependencies": {
     "pino": "^7.8.0",
-    "pino-pretty": "^7.5.3"
+    "pino-pretty": "^7.5.3",
+    "throttle"
   }
 }

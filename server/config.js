@@ -33,6 +33,7 @@ export default {
     AUDIO_MEDIA_TYPE: 'mp3',
     SONG_VOLUME: '0.99',
     FALLBACK_BITRATE: '128000',
-    ENGLUSH_CONVERSATION: join(songsDirectory, 'conversation.mp3')
+    BITRATE_DIVISOR: 8,
+    ENGLISH_CONVERSATION: join(songsDirectory, 'conversation.mp3'),
   },
 };

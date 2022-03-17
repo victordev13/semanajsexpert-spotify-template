@@ -33,6 +33,19 @@ async function routes(request, response) {
     return stream.pipe(response);
   }
 
+  if (method === 'GET' && url.includes('/stream')) {
+    const { onClose, stream } = controller.createClientStream();
+
+    request.once('close', onClose);
+
+    response.writeHead(200, {
+      'Content-Type': 'audio/mpeg',
+      'Accept-Ranges': 'bytes',
+    });
+
+    return stream.pipe(response);
+  }
+
   if (method === 'GET') {
     const { stream, type } = await controller.getFileStream(url);
     const contentType = CONTENT_TYPE[type];
@@ -46,8 +59,7 @@ async function routes(request, response) {
     return stream.pipe(response);
   }
 
-  response.writeHead(404);
-  return response.end();
+  return response.writeHead(404).end();
 }
 
 function handlerError(error, response) {
@@ -59,8 +71,7 @@ function handlerError(error, response) {
   }
 
   logger.error(`caught error on API ${error.stack}`);
-  response.writeHead(500);
-  return response.end();
+  response.writeHead(500).end();
 }
 
 export function handler(request, response) {
